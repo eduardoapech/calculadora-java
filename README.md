@@ -1,3 +1,4 @@
 Projeto de Calculadora em JAVA
 
-Criando do zero para praticar a linguagem java e se aperfeiçoar cada vez mais
+Criando do zero para praticar a linguagem java e se aperfeiçoar cada vez
+mais na programação em backend
