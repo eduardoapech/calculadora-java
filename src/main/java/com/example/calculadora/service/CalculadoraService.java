@@ -2,13 +2,22 @@ package com.example.calculadora.service;
 
 import com.example.calculadora.dto.OperacaoRequest;
 import com.example.calculadora.exception.OperacaoInvalidaException;
+import com.example.calculadora.model.Operacao;
+import com.example.calculadora.repository.OperacaoRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class CalculadoraService {
 
+    private final OperacaoRepository repository;
+
+
+
     public double calcular(OperacaoRequest request){
-     return switch (request.getOperador()){
+
+        double resultado = switch (request.getOperador()){
        case "+" -> request.getNumero1() + request.getNumero2();
        case "-" -> request.getNumero1() - request.getNumero2();
        case "*" -> request.getNumero1() * request.getNumero2();
@@ -19,5 +28,20 @@ public class CalculadoraService {
        }
          default -> throw  new OperacaoInvalidaException("Operador inválido: " + request.getOperador());
      };
+
+        Operacao operacao = new Operacao(
+                request.getNumero1(),
+                request.getNumero2(),
+                request.getOperador(),
+                resultado
+        );
+
+        repository.salvar(operacao);
+
+        return resultado;
+    }
+
+    public java.util.List<Operacao> listarOperacoes(){
+        return repository.listarTodas();
     }
 }
