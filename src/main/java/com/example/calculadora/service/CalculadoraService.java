@@ -7,6 +7,8 @@ import com.example.calculadora.repository.OperacaoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CalculadoraService {
@@ -36,12 +38,12 @@ public class CalculadoraService {
                 resultado
         );
 
-        repository.salvar(operacao);
+        repository.save(operacao);
 
         return resultado;
     }
 
-    public java.util.List<Operacao> listarOperacoes(){
-        return repository.listarTodas();
+    public List<Operacao> listarOperacoes(){
+        return repository.findAll();
     }
 }

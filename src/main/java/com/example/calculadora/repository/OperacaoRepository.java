@@ -2,20 +2,11 @@ package com.example.calculadora.repository;
 
 import com.example.calculadora.model.Operacao;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class OperacaoRepository {
-
-    private final List<Operacao> operacoes = new ArrayList<>();
-
-    public void  salvar(Operacao operacao) {
-        operacoes.add(operacao);
-    }
-
-    public List<Operacao> listarTodas(){
-        return operacoes;
-    }
+public interface OperacaoRepository extends JpaRepository<Operacao, Long> {
 }
